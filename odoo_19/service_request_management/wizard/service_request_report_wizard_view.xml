@@ -1,0 +1,26 @@
+<odoo>
+    <record id="view_from_service_wizard" model="ir.ui.view">
+        <field name="name">service_request_wizard</field>
+        <field name="model">service.request.report.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Info">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="state"/>
+                    </group>
+                    <footer>
+                        <button string="Submit" name="generate_report" type="object"/>
+                        <button string="Cancel" special="cancel"/>
+
+
+                    </footer>
+                </sheet>
+                 <chatter/>
+            </form>
+
+        </field>
+    </record>
+
+</odoo>

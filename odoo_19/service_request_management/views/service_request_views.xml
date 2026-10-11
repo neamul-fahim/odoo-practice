@@ -1,0 +1,88 @@
+<odoo>
+    <record id="view_from_service_request" model="ir.ui.view">
+        <field name="name">service_request</field>
+        <field name="model">service.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Submit" type="object" name="action_submit" invisible="state!='draft'"
+                            class="btn-primary"/>
+                    <button string="Approve" type="object" name="action_approve" invisible="state!='submitted'"
+                            class="btn-info"/>
+                    <button string="In Progress" type="object" name="action_in_progress" invisible="state!='approved'"
+                            class="btn-info"/>
+                    <button string="Done" type="object" name="action_done" invisible="state!='in_progress'"
+                            class="btn-success"/>
+                    <button string="Cancel" type="object" name="action_cancel" invisible="state in ('done','canceled')"
+                            class="btn-danger"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,submitted,approved,in_progress,done"/>
+                </header>
+                <sheet>
+                    <group string="Info">
+                        <group string="General">
+                            <field name="reference"/>
+                            <field name="title"/>
+                            <field name="requester_id"/>
+                            <field name="requester_department_id"/>
+                            <field name="assigned_use_id"/>
+                            <field name="company_id"/>
+                            <field name="currency_id"/>
+                            <field name="estimated_cost"/>
+                        </group>
+                        <group string="Attribute">
+                            <field name="request_date"/>
+                            <field name="expected_completion_date"/>
+                            <field name="priority"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <group string="Description">
+                        <field name="description"/>
+                    </group>
+
+                    <notebook>
+                        <page string="request lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_price"/>
+                                    <field name="discount"/>
+                                    <field name="subtotal"/>
+                                </list>
+                            </field>
+                         <group class="oe_subtotal_footer">
+                                 <field name="total_cost"/>
+                         </group>
+
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+                 <chatter/>
+            </form>
+
+        </field>
+    </record>
+
+    <record id="view_list_service_request" model="ir.ui.view">
+        <field name="name">service_request</field>
+        <field name="model">service.request</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="reference"/>
+                <field name="title"/>
+                <field name="requester_id"/>
+                <field name="assigned_use_id"/>
+                <field name="request_date"/>
+                <field name="expected_completion_date"/>
+
+            </list>
+
+        </field>
+    </record>
+
+</odoo>

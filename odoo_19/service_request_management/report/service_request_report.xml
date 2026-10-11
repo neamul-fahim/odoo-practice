@@ -1,0 +1,24 @@
+<odoo>
+    <record id="action_service_request_report" model="ir.actions.report">
+        <field name="name">service_report</field>
+        <field name="model">service.request</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">service_request_management.ser_req_report_template</field>
+    </record>
+
+
+    <template id="ser_req_report_template">
+
+        <t t-call="web.html_container">
+
+            <t t-call="web.external_layout">
+                <h1>Report</h1>
+                <t t-esc="date_from"/>
+                <t t-esc="date_to"/>
+                <t t-esc="state"/>
+            </t>
+        </t>
+
+
+    </template>
+</odoo>
