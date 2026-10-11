@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="home_page">
+        <h1>Home page</h1>
+        <t t-set="sr_records" t-value="sr"/>
+        <t t-call="service_request_portal.sr_table"/>
+    </template>
+</odoo>

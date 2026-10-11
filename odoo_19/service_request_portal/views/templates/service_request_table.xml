@@ -1,0 +1,83 @@
+<odoo>
+    <template id="sr_table">
+
+
+        <div style="width:100%">
+
+
+            <form action="/home">
+                <input name="search_text" type="search" t-att-value="search_text if search_text else ''"/>
+<!--                <select name="priority">-->
+
+<!--                    <t t-foreach="priorities" t-as="p">-->
+<!--                        <option t-att-value="p" t-out="p" t-att-selected="p == priority "/>-->
+<!--                    </t>-->
+<!--                </select>-->
+                <button type="submit">Search</button>
+
+            </form>
+
+            <table style="width:100%; border-collapse:collapse">
+                <thead>
+                    <tr>
+                        <th style="border: 1px solid black; background-color: gray; padding: 10px;">
+                            ID
+                        </th>
+                        <th style="border: 1px solid black; background-color: gray; padding: 10px;">
+                            Name
+                        </th>
+
+                        <th style="border: 1px solid black; background-color: gray; padding: 10px;">
+                            Title
+                        </th>
+
+                        <th style="border: 1px solid black; background-color: gray; padding: 10px;">
+                            Partner
+                        </th>
+                        <th style="border: 1px solid black; background-color: gray; padding: 10px;">
+                            priority
+                        </th>
+                        <th style="border: 1px solid black; background-color: gray; padding: 10px;">
+                            state
+                        </th>
+
+
+                    </tr>
+                </thead>
+
+
+                <tbody>
+                    <tr t-foreach="sr_records" t-as="sr">
+                        <td style="border: 1px solid black; padding: 10px;" t-out="sr.id"/>
+                        <td style="border: 1px solid black; padding: 10px;" t-out="sr.name"/>
+                        <td style="border: 1px solid black; padding: 10px;" t-out="sr.title"/>
+                        <td style="border: 1px solid black; padding: 10px;" t-out="sr.partner_id.name"/>
+                        <td style="border: 1px solid black; padding: 10px;" t-out="sr.priority"/>
+                        <td style="border: 1px solid black; padding: 10px;" t-out="sr.state"/>
+
+                    </tr>
+                </tbody>
+
+
+            </table>
+
+            <div style="display: flex; justify-content:center; align-items:center; gap:8px;">
+                <a t-att-href="f'/home?page={page-1}&amp;limit=10&amp;search_text={search_text}&amp;priority={priority}'">
+                    &lt;
+                </a>
+
+                <form action="/home?search_text={search_text}&amp;priority={priority}" method="GET" style="margin:0;">
+                    <input name="input_page_number" type="number" t-att-value="page" onchange="this.form.submit()" style="width: 60px;"/>
+                </form>
+                <a t-att-href="f'/home?page={page+1}&amp;limit=10&amp;search_text={search_text}&amp;priority={priority}'">
+                    &gt;
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </template>
+</odoo>
